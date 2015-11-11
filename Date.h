@@ -11,8 +11,11 @@ class Date {
 		struct std::tm * primitiveTM;
 		//struct primitiveTM;
     std::time_t primitive;
-    std::string scale="day";
+    std::string scale="year";
     void setPrimitive(std::string&);
+    void parseDash(std::string&);
+    void parseSlash(std::string&);
+    void IntToDate(int, int, int);
 	public:
 		Date();
     Date(std::string&);
