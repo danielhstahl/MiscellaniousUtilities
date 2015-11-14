@@ -87,9 +87,11 @@ double Date::dateDiff(Date &dt){
         return difftime(primitive, dt.getPrimitive())/2592000; //seconds per month (30 days)
     }
 	else{
-		return difftime(primitive, dt.getPrimitive());
+		return difftime(primitive, dt.getPrimitive()); //try to make this throw an error!
 	}
-
+}
+int Date::msDiff(Date &dt){
+	return difftime(primitive, dt.getPrimitive()); 
 }
 Date Date::dateAdd(double tm){
   time_t newtime;

@@ -25,6 +25,7 @@ class Date {
     Date operator=(std::string&);
     Date operator=(char const[]);
 		double dateDiff(Date&);
+		int msDiff(Date&);
 		Date dateAdd(double);
 		void setScale(std::string&);
     void setScale(char const[]);
