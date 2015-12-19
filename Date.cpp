@@ -76,7 +76,7 @@ void Date::parseDash(std::string &val){
   IntToDate(day, month, year);
 }
 
-double Date::dateDiff(Date &dt){
+double Date::dateDiff(const Date &dt) const{
   if(scale=="day"){
 		return difftime(primitive, dt.getPrimitive())/86400; //seconds per day
 	}
@@ -93,7 +93,7 @@ double Date::dateDiff(Date &dt){
 int Date::msDiff(Date &dt){
 	return difftime(primitive, dt.getPrimitive()); 
 }
-Date Date::dateAdd(double tm){
+Date Date::dateAdd(double tm) const{
   time_t newtime;
   if(scale=="day"){
     newtime=primitive+tm*86400;
@@ -113,7 +113,7 @@ Date Date::dateAdd(double tm){
   }
 }
 
-std::time_t Date::getPrimitive(){
+std::time_t Date::getPrimitive() const{
   return primitive;
 }
 std::string Date::type(){
@@ -129,13 +129,23 @@ void Date::setScale(std::string &scale_) {
 void Date::setScale(char const scale_[]) {
     scale=std::string(scale_);
 }
-bool operator==(Date &x1, Date &x2) {
+bool operator==(const Date &x1, const Date &x2) {
     return x1.getPrimitive()==x2.getPrimitive();
 }
 
-double operator-(Date &x1, Date &x2) {
+double operator-(const Date &x1, const Date &x2) {
     return x1.dateDiff(x2);
 }
-Date operator+(Date &x1, double x2){
+Date operator+(const Date &x1, double x2){
     return x1.dateAdd(x2);
 }
+bool operator<(const Date& dt1, const Date& dt2){
+    return dt1.getPrimitive()<dt2.getPrimitive();
+}
+bool operator>(const Date& dt1, const Date& dt2){
+    return dt1.getPrimitive()>dt2.getPrimitive();
+}
+bool operator!=(const Date& dt1, const Date& dt2){
+    return dt1.getPrimitive()!=dt2.getPrimitive();
+}
+
